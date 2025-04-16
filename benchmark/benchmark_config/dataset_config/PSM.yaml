@@ -1,24 +1,20 @@
 Base:
-    dataset: "wadi"
-    data_root: ../data/WADI/
+    dataset: "psm"
+    data_root: ../data/PSM/
     model_root: "./benchmark_exp_details"
     benchmark_dir: "./benchmark_results"
     train_postfix: "train.pkl"
     test_postfix: "test.pkl"
     test_label_postfix: "test_label.pkl"
-    dim: 93
+    dim: 25
     nrows: null
     entities:
-        - wadi
+        ['PSM']
 
-
-WADI:
+PSM_test:
     valid_ratio: 0
-    entities: ["wadi"]
+    entities:      
+        ['PSM']
 
-WADI_test:
-    nrows: 5000
+PSM:
     valid_ratio: 0
-    entities: ["wadi"]
-
-

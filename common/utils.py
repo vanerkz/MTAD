@@ -6,7 +6,7 @@ import h5py
 import random
 import os
 import torch
-import tensorflow as tf
+#import tensorflow as tf
 import glob
 import yaml
 from collections import OrderedDict
@@ -143,11 +143,11 @@ def seed_basic(seed=DEFAULT_RANDOM_SEED):
     np.random.seed(seed)
 
 
-def seed_tf(seed=DEFAULT_RANDOM_SEED):
+"""def seed_tf(seed=DEFAULT_RANDOM_SEED):
     try:
         tf.random.set_seed(seed)
     except:
-        tf.set_random_seed(seed)
+        tf.set_random_seed(seed)"""
 
 
 def seed_torch(seed=DEFAULT_RANDOM_SEED):
@@ -159,7 +159,7 @@ def seed_torch(seed=DEFAULT_RANDOM_SEED):
 
 def seed_everything(seed=DEFAULT_RANDOM_SEED):
     seed_basic(seed)
-    seed_tf(seed)
+    #seed_tf(seed)
     seed_torch(seed)
 
 

@@ -99,7 +99,7 @@ def generate_windows(data_dict, window_size=100, nrows=None, stride=1, **kwargs)
             if k == "test":
                 test_label = subdata_dict["test_label"][0:nrows]
                 test_windows, test_label = get_windows(
-                    data, test_label, window_size=window_size, stride=1
+                    data, test_label, window_size=window_size, stride=window_size
                 )
                 results[dataname]["test_windows"] = test_windows
                 results[dataname]["test_label"] = test_label

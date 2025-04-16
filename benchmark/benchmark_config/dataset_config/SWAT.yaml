@@ -17,7 +17,6 @@ SWAT:
     entities: ["swat"]
 
 SWAT_test:
-    nrows: 5000
     valid_ratio: 0
     entities: ["swat"]
 
