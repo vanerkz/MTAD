@@ -12,7 +12,7 @@ anomaly_transformer_SMD:
     num_workers: 1
     lr: 1.0e-4
     k: 3
-    device: 2
+    device: 0
 
 anomaly_transformer_ASD:
     dataset_id: ASD

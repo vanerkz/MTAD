@@ -10,6 +10,7 @@ from common.evaluation import Evaluator, TimeTracker
 from common.exp import store_entity
 from networks.dagmm.dagmm import DAGMM
 
+
 seed_everything()
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

@@ -13,7 +13,7 @@ dagmm_SMD:
     lr: 0.0001
     lambdaone: 0.1
     lambdatwo: 0.0001
-    device: 2
+    device: 0
 dagmm_ASD:
     dataset_id: ASD
     batch_size: 512
@@ -24,7 +24,7 @@ dagmm_ASD:
     lr: 0.0001
     lambdaone: 0.1
     lambdatwo: 0.0001
-    device: 2
+    device: 0
 dagmm_SWAT:
     dataset_id: SWAT
     batch_size: 512
@@ -35,7 +35,7 @@ dagmm_SWAT:
     lr: 0.0001
     lambdaone: 0.1
     lambdatwo: 0.0001
-    device: 2
+    device: 0
 dagmm_WADI:
     dataset_id: WADI
     batch_size: 512
@@ -46,7 +46,7 @@ dagmm_WADI:
     lr: 0.0001
     lambdaone: 0.1
     lambdatwo: 0.0001
-    device: 2
+    device: 0
 dagmm_SMAP:
     dataset_id: SMAP_test
     batch_size: 512
@@ -57,7 +57,7 @@ dagmm_SMAP:
     lr: 0.001
     lambdaone: 0
     lambdatwo: 0
-    device: 2
+    device: 0
 dagmm_MSL:
     dataset_id: MSL
     batch_size: 512
@@ -68,5 +68,5 @@ dagmm_MSL:
     lr: 0.0001
     lambdaone: 0.1
     lambdatwo: 0.0001
-    device: 2
+    device: 0
 

@@ -1,0 +1,41 @@
+benchmark_dir: ./benchmark_results
+data_root: ../data/SMD/
+dataset: smd
+dataset_id: SMD
+device: -1
+dim: 38
+entities:
+- SMD
+eval:
+  best_params:
+    target_direction: max
+    target_metric: f1
+  metrics:
+  - f1
+  - delay
+  point_adjustment:
+  - true
+  - false
+  pot_params:
+    dynamic: false
+    level:
+    - 0.99
+    - 0.98
+    - 0.97
+    - 0.9
+    - 0.8
+    q: 0.01
+  thresholding:
+  - best
+  - pot
+exp_id: iforest_SMD
+model_id: iforest
+model_root: ./benchmark_exp_details/SMD/iforest/iforest_SMD
+n_estimators: 100
+normalize: minmax
+nrows: null
+test_label_postfix: test_label.pkl
+test_postfix: test.pkl
+train_postfix: train.pkl
+uptime: 20250416-141907
+valid_ratio: 0

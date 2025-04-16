@@ -11,6 +11,9 @@ from .gmm import GMM
 from os import makedirs
 from os.path import exists, join
 
+import tensorflow.compat.v1 as tf
+
+tf.disable_v2_behavior() 
 
 class DAGMM:
     """Deep Autoencoding Gaussian Mixture Model.
@@ -117,7 +120,7 @@ class DAGMM:
 
             # Build graph
             z, x_dash = self.comp_net.inference(input)
-            gamma = self.est_net.inference(z, drop)
+            gamma = self.est_net.inference(z, self.est_dropout_ratio)
             self.gmm.fit(z, gamma)
             energy = self.gmm.energy(z)
 

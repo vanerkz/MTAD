@@ -1,0 +1,54 @@
+batch_size: 512
+benchmark_dir: ./benchmark_results
+compression_hiddens:
+- 128
+- 64
+- 2
+data_root: ../data/SMD/
+dataset: smd
+dataset_id: SMD
+device: -1
+dim: 38
+entities:
+- SMD
+estimation_dropout_ratio: 0.25
+estimation_hiddens:
+- 100
+- 50
+eval:
+  best_params:
+    target_direction: max
+    target_metric: f1
+  metrics:
+  - f1
+  - delay
+  point_adjustment:
+  - true
+  - false
+  pot_params:
+    dynamic: false
+    level:
+    - 0.99
+    - 0.98
+    - 0.97
+    - 0.9
+    - 0.8
+    q: 0.01
+  thresholding:
+  - best
+  - pot
+exp_id: dagmm_SMD
+lambdaone: 0.1
+lambdatwo: 0.0001
+lr: 0.0001
+model_id: dagmm
+model_root: ./benchmark_exp_details/SMD/dagmm/dagmm_SMD
+nb_epoch: 20
+normalize: standard
+nrows: null
+reverse_score: false
+test_label_postfix: test_label.pkl
+test_postfix: test.pkl
+train_postfix: train.pkl
+uptime: 20250416-141032
+valid_ratio: 0

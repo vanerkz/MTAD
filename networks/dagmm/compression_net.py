@@ -29,33 +29,29 @@ class CompressionNet:
     def compress(self, x):
         self.input_size = x.shape[1]
 
-        with tf.variable_scope("Encoder"):
+        with tf.name_scope("Encoder"):
             z = x
             n_layer = 0
             for size in self.hidden_layer_sizes[:-1]:
                 n_layer += 1
-                z = tf.layers.dense(z, size, activation=self.activation,
-                    name="layer_{}".format(n_layer))
+                z = tf.keras.layers.Dense(size, activation=self.activation)(z)
 
             # activation function of last layer is linear
             n_layer += 1
-            z = tf.layers.dense(z, self.hidden_layer_sizes[-1],
-                name="layer_{}".format(n_layer))
+            z = tf.keras.layers.Dense(self.hidden_layer_sizes[-1])(z)
 
         return z
 
     def reverse(self, z):
-        with tf.variable_scope("Decoder"):
+        with tf.name_scope("Decoder"):
             n_layer = 0
             for size in self.hidden_layer_sizes[:-1][::-1]:
                 n_layer += 1
-                z = tf.layers.dense(z, size, activation=self.activation,
-                    name="layer_{}".format(n_layer))
+                z =tf.keras.layers.Dense(size, activation=self.activation)(z)
 
             # activation function of last layes is linear
             n_layer += 1
-            x_dash = tf.layers.dense(z, self.input_size,
-                name="layer_{}".format(n_layer))
+            x_dash = tf.keras.layers.Dense(int(self.input_size))(z)
 
         return x_dash
 
@@ -104,7 +100,7 @@ class CompressionNet:
             reconstruction error.
         """
 
-        with tf.variable_scope("CompNet"):
+        with tf.name_scope("CompNet"):
             # AutoEncoder
             z_c = self.compress(x)
             x_dash = self.reverse(z_c)

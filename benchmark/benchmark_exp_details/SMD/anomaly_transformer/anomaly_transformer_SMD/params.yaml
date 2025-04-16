@@ -39,10 +39,10 @@ nb_epoch: 10
 normalize: minmax
 nrows: null
 num_workers: 1
-stride: 100
+stride: 1
 test_label_postfix: test_label.pkl
 test_postfix: test.pkl
 train_postfix: train.pkl
-uptime: 20250416-093241
+uptime: 20250416-095718
 valid_ratio: 0
 window_size: 100

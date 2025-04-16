@@ -12,7 +12,7 @@ class GMM:
         self.training = False
 
     def create_variables(self, n_features):
-        with tf.variable_scope("GMM"):
+        with tf.name_scope("GMM"):
             phi = tf.Variable(
                 tf.zeros(shape=[self.n_comp]), dtype=tf.float32, name="phi"
             )
@@ -43,7 +43,7 @@ class GMM:
             probability. each row is correspond to row of z.
         """
 
-        with tf.variable_scope("GMM"):
+        with tf.name_scope("GMM"):
             # Calculate mu, sigma
             # i   : index of samples
             # k   : index of components
@@ -59,8 +59,8 @@ class GMM:
 
             # Calculate a cholesky decomposition of covariance in advance
             n_features = z.shape[1]
-            min_vals = tf.diag(tf.ones(n_features, dtype=tf.float32)) * 1e-6
-            self.L = tf.cholesky(sigma + min_vals[None, :, :])
+            min_vals = tf.linalg.diag(tf.ones(n_features, dtype=tf.float32)) * 1e-6
+            self.L = tf.linalg.cholesky(sigma + min_vals[None, :, :])
 
         self.training = False
 
@@ -82,10 +82,10 @@ class GMM:
         phi, mu, sigma, L = self.create_variables(self.mu.shape[1])
 
         op = tf.group(
-            tf.assign(phi, self.phi),
-            tf.assign(mu, self.mu),
-            tf.assign(sigma, self.sigma),
-            tf.assign(L, self.L),
+            phi.assign(self.phi),
+            mu.assign(self.mu),
+            sigma.assign( self.sigma),
+            L.assign( self.L),
         )
 
         self.phi, self.phi_org = phi, self.phi
@@ -114,24 +114,24 @@ class GMM:
         if self.training and self.phi is None:
             self.phi, self.mu, self.sigma, self.L = self.create_variable(z.shape[1])
 
-        with tf.variable_scope("GMM_energy"):
+        with tf.name_scope("GMM_energy"):
             # Instead of inverse covariance matrix, exploit cholesky decomposition
             # for stability of calculation.
             z_centered = z[:, None, :] - self.mu[None, :, :]  # ikl
-            v = tf.matrix_triangular_solve(
+            v = tf.linalg.triangular_solve(
                 self.L, tf.transpose(z_centered, [1, 2, 0])
             )  # kli
 
             # log(det(Sigma)) = 2 * sum[log(diag(L))]
             log_det_sigma = 2.0 * tf.reduce_sum(
-                tf.log(tf.matrix_diag_part(self.L)), axis=1
+                tf.math.log(tf.linalg.diag_part(self.L)), axis=1
             )
 
             # To calculate energies, use "log-sum-exp" (different from orginal paper)
             d = z.get_shape().as_list()[1]
-            logits = tf.log(self.phi[:, None]) - 0.5 * (
+            logits = tf.math.log(self.phi[:, None]) - 0.5 * (
                 tf.reduce_sum(tf.square(v), axis=1)
-                + d * tf.log(2.0 * np.pi)
+                + d * tf.math.log(2.0 * np.pi)
                 + log_det_sigma[:, None]
             )
             energies = -tf.reduce_logsumexp(logits, axis=0)
@@ -139,7 +139,7 @@ class GMM:
         return energies
 
     def cov_diag_loss(self):
-        with tf.variable_scope("GMM_diag_loss"):
-            diag_loss = tf.reduce_sum(tf.divide(1, tf.matrix_diag_part(self.sigma)))
+        with tf.name_scope("GMM_diag_loss"):
+            diag_loss = tf.reduce_sum(tf.divide(1, tf.linalg.diag_part(self.sigma)))
 
         return diag_loss

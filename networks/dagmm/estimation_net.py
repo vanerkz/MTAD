@@ -43,23 +43,23 @@ class EstimationNet:
         probs : tf.Tensor shape : (n_samples, n_classes)
             Calculated probabilities
         """
-        with tf.variable_scope("EstNet"):
+        with tf.name_scope("EstNet"):
             n_layer = 0
             for size in self.hidden_layer_sizes[:-1]:
                 n_layer += 1
-                z = tf.layers.dense(
-                    z, size, activation=self.activation, name="layer_{}".format(n_layer)
-                )
+                z = tf.keras.layers.Dense(
+                size, activation=self.activation, name="layer_{}".format(n_layer))(z)
+                
                 if dropout_ratio is not None:
-                    z = tf.layers.dropout(
-                        z, dropout_ratio, name="drop_{}".format(n_layer)
-                    )
+                    z = tf.keras.layers.Dropout(
+                        dropout_ratio, name="drop_{}".format(n_layer)
+                    )(z)
 
             # Last layer uses linear function (=logits)
             size = self.hidden_layer_sizes[-1]
-            logits = tf.layers.dense(z, size, activation=None, name="logits")
+            logits = tf.keras.layers.Dense(size, activation=None, name="logits")(z)
 
             # Softmax output
-            output = tf.contrib.layers.softmax(logits)
+            output = tf.keras.activations.softmax(logits)
 
         return output
