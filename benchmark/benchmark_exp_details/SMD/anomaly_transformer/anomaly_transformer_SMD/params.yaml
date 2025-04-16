@@ -1,0 +1,48 @@
+batch_size: 128
+benchmark_dir: ./benchmark_results
+data_root: ../data/SMD/
+dataset: smd
+dataset_id: SMD
+device: 0
+dim: 38
+entities:
+- SMD
+eval:
+  best_params:
+    target_direction: max
+    target_metric: f1
+  metrics:
+  - f1
+  - delay
+  point_adjustment:
+  - true
+  - false
+  pot_params:
+    dynamic: false
+    level:
+    - 0.99
+    - 0.98
+    - 0.97
+    - 0.9
+    - 0.8
+    q: 0.01
+  thresholding:
+  - best
+  - pot
+exp_id: anomaly_transformer_SMD
+k: 3
+l2_regularizer: 0.1
+lr: 0.0001
+model_id: anomaly_transformer
+model_root: ./benchmark_exp_details/SMD/anomaly_transformer/anomaly_transformer_SMD
+nb_epoch: 10
+normalize: minmax
+nrows: null
+num_workers: 1
+stride: 100
+test_label_postfix: test_label.pkl
+test_postfix: test.pkl
+train_postfix: train.pkl
+uptime: 20250416-093241
+valid_ratio: 0
+window_size: 100
