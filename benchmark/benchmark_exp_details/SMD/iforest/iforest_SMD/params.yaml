@@ -37,5 +37,5 @@ nrows: null
 test_label_postfix: test_label.pkl
 test_postfix: test.pkl
 train_postfix: train.pkl
-uptime: 20250416-141907
+uptime: 20250417-154600
 valid_ratio: 0

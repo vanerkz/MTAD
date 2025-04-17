@@ -21,8 +21,8 @@ if __name__ == "__main__":
         default="./benchmark_config/",
         help="The config directory.",
     )
-    parser.add_argument("--expid", type=str, default="iforest_SMD")
-    parser.add_argument("--gpu", type=int, default=-1)
+    parser.add_argument("--expid", type=str, default="iforest_SWAT")
+    parser.add_argument("--gpu", type=int, default=0)
     args = vars(parser.parse_args())
 
     config_dir = args["config"]

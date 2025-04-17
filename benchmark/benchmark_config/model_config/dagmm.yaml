@@ -14,30 +14,8 @@ dagmm_SMD:
     lambdaone: 0.1
     lambdatwo: 0.0001
     device: 0
-dagmm_ASD:
-    dataset_id: ASD
-    batch_size: 512
-    nb_epoch: 20
-    compression_hiddens: [128, 64, 2]
-    estimation_hiddens: [100, 50]
-    estimation_dropout_ratio: 0.25
-    lr: 0.0001
-    lambdaone: 0.1
-    lambdatwo: 0.0001
-    device: 0
 dagmm_SWAT:
     dataset_id: SWAT
-    batch_size: 512
-    nb_epoch: 20
-    compression_hiddens: [128, 64, 2]
-    estimation_hiddens: [100, 50]
-    estimation_dropout_ratio: 0.25
-    lr: 0.0001
-    lambdaone: 0.1
-    lambdatwo: 0.0001
-    device: 0
-dagmm_WADI:
-    dataset_id: WADI
     batch_size: 512
     nb_epoch: 20
     compression_hiddens: [128, 64, 2]
@@ -60,6 +38,17 @@ dagmm_SMAP:
     device: 0
 dagmm_MSL:
     dataset_id: MSL
+    batch_size: 512
+    nb_epoch: 20
+    compression_hiddens: [128, 64, 2]
+    estimation_hiddens: [100, 50]
+    estimation_dropout_ratio: 0.25
+    lr: 0.0001
+    lambdaone: 0.1
+    lambdatwo: 0.0001
+    device: 0
+dagmm_PSM:
+    dataset_id: PSM
     batch_size: 512
     nb_epoch: 20
     compression_hiddens: [128, 64, 2]

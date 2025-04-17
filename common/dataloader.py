@@ -53,7 +53,7 @@ def load_dataset(
         with open(
             os.path.join(data_root, "{}_{}".format(dataname, train_postfix)), "rb"
         ) as f:
-            train = pickle.load(f).reshape((-1, dim))[0:nrows, :]
+            train = pickle.load(f).reshape((-1, dim))
             if valid_ratio > 0:
                 split_idx = int(len(train) * valid_ratio)
                 train, valid = train[:-split_idx], train[-split_idx:]
@@ -64,13 +64,13 @@ def load_dataset(
         with open(
             os.path.join(data_root, "{}_{}".format(dataname, test_postfix)), "rb"
         ) as f:
-            test = pickle.load(f).reshape((-1, dim))[0:nrows, :]
+            test = pickle.load(f).reshape((-1, dim))
             data[dataname]["test"] = np.nan_to_num(test, nan_value)
             total_test_len += len(test)
         with open(
             os.path.join(data_root, "{}_{}".format(dataname, test_label_postfix)), "rb"
         ) as f:
-            data[dataname]["test_label"] = pickle.load(f).reshape(-1)[0:nrows]
+            data[dataname]["test_label"] = pickle.load(f).reshape(-1)
     logging.info("Loading {} entities done.".format(len(entities)))
     logging.info(
         "Train/Valid/Test: {}/{}/{} lines.".format(

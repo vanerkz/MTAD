@@ -6,7 +6,7 @@ Base:
     train_postfix: "train.pkl"
     test_postfix: "test.pkl"
     test_label_postfix: "test_label.pkl"
-    dim: 40
+    dim: 43
     nrows: null
     entities:
         - swat
